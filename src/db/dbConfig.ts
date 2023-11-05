@@ -15,9 +15,11 @@ export default async function connect() {
         "Mongodb connection error. Make sure Mongodb is running",
         error
       );
+
+      process.exit();
     });
 
-    process.exit();
+    // process.exit();
   } catch (error: any) {
     console.log(error.message);
   }

@@ -17,16 +17,13 @@ function Signup() {
 
   async function onSignup() {
     try {
-      console.log("before making req");
-
       const payload = { username: email, password: password };
 
-      console.log(payload);
-
-      const response = await axios.get("/api/admin/signup");
-      console.log("req made from frontend");
+      const response = await axios.post("/api/admin/signup", payload);
       console.log(response);
+
       setUser({ adminEmail: email, isLoading: false });
+
       router.push("/login");
     } catch (error: any) {
       console.log(error.message);

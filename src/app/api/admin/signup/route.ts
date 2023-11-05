@@ -2,16 +2,14 @@ import jwt from "jsonwebtoken";
 import { NextRequest, NextResponse } from "next/server";
 import { Admin } from "@/models/model";
 import connect from "@/db/dbConfig";
-import { request } from "http";
 
 connect();
 
 export async function POST(request: NextRequest) {
   try {
-    console.log("before ");
     const { username, password } = await request.json();
+
     const admin = await Admin.findOne({ username });
-    console.log("after");
 
     if (admin) {
       return NextResponse.json({
@@ -38,14 +36,6 @@ export async function POST(request: NextRequest) {
     response.cookies.set("token", token, { httpOnly: true });
 
     return response;
-  } catch (error: any) {
-    console.log(error.message);
-  }
-}
-
-export async function GET(request: NextResponse) {
-  try {
-    return NextResponse.json({ message: "returning response" });
   } catch (error: any) {
     console.log(error.message);
   }
