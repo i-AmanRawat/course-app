@@ -5,7 +5,7 @@ import connect from "@/db/dbConfig";
 
 connect();
 
-export async function GET(request: NextRequest) {
+export async function POST(request: NextRequest) {
   try {
     const { username, password } = await request.json();
 
@@ -15,7 +15,7 @@ export async function GET(request: NextRequest) {
       const token = jwt.sign(
         { username, role: "admin" },
         process.env.SECRET_KEY!,
-        { expiresIn: "true" }
+        { expiresIn: "1d" }
       );
 
       const response = NextResponse.json({ message: "LoggedIn sucessfully" });

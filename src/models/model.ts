@@ -35,6 +35,16 @@ const userSchema = new mongoose.Schema({
   purchasedCourses: [{ type: mongoose.Schema.Types.ObjectId, ref: "Course" }],
 });
 
-export const User = mongoose.model("User", userSchema);
-export const Course = mongoose.model("Course", courseSchema);
-export const Admin = mongoose.model("Admin", adminSchema);
+export const User = mongoose.models.User || mongoose.model("User", userSchema);
+
+export const Course =
+  mongoose.models.Course || mongoose.model("Course", courseSchema);
+
+export const Admin =
+  mongoose.models.Admin || mongoose.model("Admin", adminSchema);
+
+// export const User = mongoose.model("User", userSchema);
+
+// export const Course = mongoose.model("Course", courseSchema);
+
+// export const Admin = mongoose.model("Admin", adminSchema);

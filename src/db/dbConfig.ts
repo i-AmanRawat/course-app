@@ -18,8 +18,6 @@ export default async function connect() {
 
       process.exit();
     });
-
-    // process.exit();
   } catch (error: any) {
     console.log(error.message);
   }

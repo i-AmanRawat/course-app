@@ -15,6 +15,24 @@ function Signin() {
   const router = useRouter();
   const setAdmin = useSetRecoilState(adminState);
 
+  async function onLogin() {
+    const payload = {
+      username: email,
+      password,
+    };
+
+    const response = await axios.post("/api/admin/login", payload);
+
+    console.log(response.data);
+
+    setAdmin({
+      adminEmail: email,
+      isLoading: false,
+    });
+
+    router.push("/courses");
+  }
+
   return (
     <div>
       <div
@@ -57,22 +75,7 @@ function Signin() {
             size={"large"}
             variant="contained"
             className="bg-blue-600"
-            onClick={async () => {
-              const response = await axios.post(
-                `${process.env.BASE_URL}/api/admin/login`,
-                {
-                  username: email,
-                  password,
-                }
-              );
-              console.log(response.data);
-              setAdmin({
-                adminEmail: email,
-                isLoading: false,
-              });
-
-              router.push("/courses");
-            }}
+            onClick={onLogin}
           >
             Signin
           </Button>
