@@ -12,6 +12,19 @@ export default function AddCourse() {
   const [image, setImage] = useState("");
   const [price, setPrice] = useState<string>();
 
+  async function onAddCourse() {
+    const payload = {
+      title: title,
+      description: description,
+      imageLink: image,
+      published: true,
+      price,
+    };
+    const response = await axios.post("/api/admin/addcourse", payload);
+    console.log(response.data);
+    alert("Added course!");
+  }
+
   return (
     <div
       style={{
@@ -71,16 +84,7 @@ export default function AddCourse() {
             size={"large"}
             variant="contained"
             className=" bg-blue-600"
-            onClick={async () => {
-              await axios.post(`${process.env.BASE_URL}/api/admin/addcourse`, {
-                title: title,
-                description: description,
-                imageLink: image,
-                published: true,
-                price,
-              });
-              alert("Added course!");
-            }}
+            onClick={onAddCourse}
           >
             Add course
           </Button>

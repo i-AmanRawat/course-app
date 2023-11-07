@@ -19,11 +19,3 @@ export async function POST(request: NextRequest) {
     console.log(error.message);
   }
 }
-
-/*
-  router.post('/courses', authenticateJwt, async (req, res) => {
-    const course = new Course(req.body);
-    await course.save();
-    res.json({ message: 'Course created successfully', courseId: course.id });
-  });
-*/

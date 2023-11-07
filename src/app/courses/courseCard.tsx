@@ -30,6 +30,7 @@ export function CourseCard({ course }: { course: Course }) {
       </Typography>
       <div style={{ display: "flex", justifyContent: "center", marginTop: 20 }}>
         <Button
+          className="bg-blue-500"
           variant="contained"
           size="large"
           onClick={() => {

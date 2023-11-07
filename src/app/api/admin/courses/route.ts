@@ -7,7 +7,7 @@ connect();
 export async function GET() {
   try {
     const courses = await Course.find({});
-    if (courses) console.log("courses found");
+
     return NextResponse.json({ courses });
   } catch (error: any) {
     console.log(error.message);

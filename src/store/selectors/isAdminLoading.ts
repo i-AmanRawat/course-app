@@ -1,8 +1,8 @@
 import { adminState } from "../atoms/admin";
 import { selector } from "recoil";
 
-export const isUserLoading = selector({
-  key: "userLoadingState",
+export const isAdminLoading = selector({
+  key: "adminLoadingState",
   get: ({ get }) => {
     const state = get(adminState);
 
