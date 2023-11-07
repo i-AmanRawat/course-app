@@ -11,7 +11,6 @@ export async function GET(
   try {
     console.log("hello from backend #get route");
     const courseId = params.courseId;
-    console.log(courseId);
 
     const course = await Course.findById(courseId);
 
@@ -26,13 +25,9 @@ export async function PUT(
   { params }: { params: { courseId: string } }
 ) {
   try {
-    console.log("hello from backend #put route");
-
     const courseId = params.courseId;
 
     const courseDetails = await request.json();
-
-    console.log("courseId : ", courseId);
 
     const course = await Course.findByIdAndUpdate(courseId, courseDetails, {
       new: true,
@@ -47,20 +42,3 @@ export async function PUT(
     console.log(error.message);
   }
 }
-
-/*
-  router.put('/courses/:courseId', authenticateJwt, async (req, res) => {
-    const course = await Course.findByIdAndUpdate(req.params.courseId, req.body, { new: true });
-    if (course) {
-      res.json({ message: 'Course updated successfully' });
-    } else {
-      res.status(404).json({ message: 'Course not found' });
-    }
-  });
-
-  router.get('/course/:courseId', authenticateJwt, async (req, res) => {
-    const courseId = req.params.courseId;
-    const course = await Course.findById(courseId);
-    res.json({ course });
-  });
-*/

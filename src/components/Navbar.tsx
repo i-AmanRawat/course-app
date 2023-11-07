@@ -3,10 +3,10 @@
 import { Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 import { useRouter } from "next/navigation";
-import { isAdminLoading } from "@/store/selectors/isAdminLoading";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import { adminState } from "@/store/atoms/admin";
 import { adminEmailState } from "@/store/selectors/adminEmail";
+import axios from "axios";
 
 function Navbar() {
   const router = useRouter();
@@ -59,11 +59,16 @@ function Navbar() {
             <Button
               variant={"contained"}
               className="bg-blue-500"
-              onClick={() => {
+              onClick={async () => {
+                const response = await axios.get("/api/admin/logout");
+                console.log(response);
+
                 setAdmin({
                   isLoading: false,
                   adminEmail: null,
                 });
+
+                router.push("/login");
               }}
             >
               Logout

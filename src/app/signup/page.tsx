@@ -20,7 +20,7 @@ function Signup() {
       const payload = { username: email, password: password };
 
       const response = await axios.post("/api/admin/signup", payload);
-      console.log(response);
+      console.log(response.data);
 
       setUser({ adminEmail: email, isLoading: false });
 

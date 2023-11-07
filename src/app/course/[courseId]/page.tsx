@@ -23,7 +23,7 @@ function UpdateCourse({ params }: { params: { courseId: string } }) {
   async function getCourseData() {
     try {
       const response = await axios.get(`/api/admin/course/${courseId}`);
-      console.log(response);
+      console.log(response.data);
       setCourse({ isLoading: false, course: response.data.course });
     } catch (error) {
       setCourse({ isLoading: false, course: null });
